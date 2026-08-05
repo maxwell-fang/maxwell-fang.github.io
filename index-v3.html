@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Mercer | CS Grad Student</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Academicons for Research Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+            --tag-bg: #eff6ff;
+            --tag-text: #1d4ed8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #60a5fa;
+            --accent-hover: #3b82f6;
+            --border-color: #334155;
+            --tag-bg: #1e3a8a;
+            --tag-text: #bfdbfe;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Sticky Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        /* Profile Hero Layout */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .profile-info .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .profile-info .affiliation {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Contact Icons Row directly under name / bio info */
+        .contact-icons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--tag-bg);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .icon-btn:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h2.section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.3rem;
+            width: fit-content;
+        }
+
+        .about-text {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .about-text a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Projects Section Styling */
+        .filter-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .item-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .item-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .item-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background-color: var(--bg-color);
+        }
+
+        .btn-link:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .contact-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Alex Mercer</a>
+            <ul class="nav-links">
+                <li><a href="#projects"><i class="fa-solid fa-code"></i> Projects</a></li>
+                <li><a href="assets/resume.pdf" target="_blank"><i class="fa-regular fa-file-pdf"></i> Resume (PDF)</a></li>
+                <li><a href="assets/cv.pdf" target="_blank"><i class="ai ai-cv"></i> CV (PDF)</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Hero Header Section with Contact Icons Underneath -->
+        <div class="profile-header">
+            <div class="profile-avatar">AM</div>
+            <div class="profile-info">
+                <h1>Alex Mercer</h1>
+                <div class="subtitle">Computer Science Graduate Student</div>
+                <div class="affiliation">
+                    <i class="fa-solid fa-graduation-cap"></i> Stanford University &nbsp;|&nbsp; Advised by <a href="https://cs.stanford.edu" target="_blank" style="color: var(--accent-color); text-decoration: underline;">Prof. Jane Doe</a>
+                </div>
+                
+                <!-- Contact Icons directly under name & affiliation -->
+                <div class="contact-icons">
+                    <a href="mailto:alex.mercer@example.edu" class="icon-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://github.com" target="_blank" class="icon-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="icon-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://scholar.google.com" target="_blank" class="icon-btn" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="icon-btn" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <h2 class="section-title"><i class="fa-solid fa-user"></i> About Me</h2>
+            <p class="about-text">
+                I am a Computer Science graduate student at Stanford University focused on <strong>Efficient Machine Learning</strong>, <strong>Distributed Systems</strong>, and <strong>High-Performance Computing</strong>. My research involves accelerating large language model inference on constrained edge devices and building robust distributed data infrastructure.
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> Projects</h2>
+
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+                <button class="filter-btn" onclick="filterProjects('research')">Research / ML</button>
+                <button class="filter-btn" onclick="filterProjects('systems')">Systems / C++</button>
+            </div>
+
+            <div class="item-card project-card" data-category="research">
+                <div class="item-title">FlashInfer: Hardware-Aware LLM Serving</div>
+                <p class="item-description">
+                    An open-source adaptive kernel execution framework that optimizes KV-cache memory bandwidth and cuts token decoding latency by 34% in multi-tenant environments.
+                </p>
+                <div class="tag-list">
+                    <span class="tag">PyTorch</span>
+                    <span class="tag">CUDA</span>
+                    <span class="tag">LLM Systems</span>
+                </div>
+                <div class="item-links">
+                    <a href="https://github.com" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> Code</a>
+                    <a href="assets/paper.pdf" target="_blank" class="btn-link"><i class="fa-regular fa-file-pdf"></i> Paper PDF</a>
+                </div>
+            </div>
+
+            <div class="item-card project-card" data-category="systems">
+                <div class="item-title">DistributedKV-Core</div>
+                <p class="item-description">
+                    High-throughput, persistent key-value store built in C++20 utilizing Raft consensus protocol, async gRPC pipelines, and custom log serialization.
+                </p>
+                <div class="tag-list">
+                    <span class="tag">C++20</span>
+                    <span class="tag">Distributed Systems</span>
+                    <span class="tag">Raft</span>
+                </div>
+                <div class="item-links">
+                    <a href="https://github.com" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> Repository</a>
+                    <a href="#" class="btn-link"><i class="fa-solid fa-book"></i> Documentation</a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Alex Mercer. Hosted on <a href="https://pages.github.com/" style="color: var(--accent-color);">GitHub Pages</a>.</p>
+        </footer>
+
+    </div>
+
+    <!-- Theme & Filter Scripts -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxwell Fang</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Academicons for Research Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
+            --tag-bg: #eff6ff;
+            --tag-text: #1d4ed8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #60a5fa;
+            --accent-hover: #3b82f6;
+            --border-color: #334155;
+            --tag-bg: #1e3a8a;
+            --tag-text: #bfdbfe;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Sticky Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        /* Profile Hero Layout */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .profile-info .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .profile-info .affiliation {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Contact Icons Row directly under name / bio info */
+        .contact-icons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--tag-bg);
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .icon-btn:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h2.section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.3rem;
+            width: fit-content;
+        }
+
+        .about-text {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .about-text a {
+            color: var(--accent-color);
+            text-decoration: underline;
+
+        }
+
+        /* Projects Section Styling */
+        .filter-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .item-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .item-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .item-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background-color: var(--bg-color);
+        }
+
+        .btn-link:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .contact-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Maxwell Fang</a>
+            <ul class="nav-links">
+                <!-- <li><a href="#projects"><i class="fa-solid fa-code"></i> Projects</a></li> -->
+                <li><a href="assets/resume.pdf" target="_blank"></i> Resume </a></li>
+                <li><a href="assets/cv.pdf" target="_blank"></i> CV </a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Hero Header Section with Contact Icons Underneath -->
+        <div class="profile-header">
+            <div class="profile-avatar">MF</div>
+            <div class="profile-info">
+                <h1>Maxwell Fang</h1>
+                <!-- Contact Icons directly under name & affiliation -->
+                <div class="contact-icons">
+                    <a href="mailto:maxwellfang63@gmail.com" class="icon-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://github.com/maxwell-fang" target="_blank" class="icon-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/maxwell-fang-49472822a/" target="_blank" class="icon-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <h2 class="section-title"><i class="fa-solid fa-user"></i> About Me</h2>
+            <p class="about-text">
+                I obtained my Bachelor's of Mathematics with a Major in Combinatorics and Optimization from the University of Waterloo where I worked with 
+                <a href="https://uwaterloo.ca/combinatorics-and-optimization/profile/vavasis" target="_blank" style="color: var(--accent-color); text-decoration: underline;">Stephen A. Vavasis</a>
+                from 2024-2026. My research interests are continuous optimization, computational linear algebra, and unsupervised/supervised learning; not necessarily applied to one another. 
+                During my time at the University of Waterloo, I also worked as a ML Engineer/Software Developer Co-op at CAA South Central Ontario, Eon Media, and Ford Motor Company developing mainly 
+                computer vision based products/tools.
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> Projects</h2>
+
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+                <button class="filter-btn" onclick="filterProjects('research')">Research</button>
+                <button class="filter-btn" onclick="filterProjects('machine learning')">ML</button>
+                <button class="filter-btn" onclick="filterProjects('optimization')">Optimization</button>
+            </div>
+
+            <div class="item-card project-card" data-category="research">
+                <div class="item-title">A Generative Model for a Dataset of Greyscale Images</div>
+                <p class="item-description">
+                    An easily analyzable and scalable model for a dataset of greyscale images adhering to neural scaling laws in the spectra of the covariance matrix.
+                     This report is unpublished and was completed under the supervision of Stephen A. Vavasis.
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Neural Scaling Laws</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">MATLAB</span>
+                </div>
+                <div class="item-links">
+                    <a href="assets/report_draft.pdf" target="_blank" class="btn-link"><i class="fa-regular fa-file-pdf"></i> Report PDF</a>
+                </div>
+            </div>
+
+            <div class="item-card project-card" data-category="machine learning">
+                <div class="item-title">Gesture Controls</div>
+                <p class="item-description">
+                    A library for producing macros with hand gesture triggers based on pose estimation and unsupervised learning. 
+                    By using pose estimation models, new macros can be added without the requirement of retraining any models as would be necessary for CNN-based solutions.
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Pytorch</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Pose Estimation</span>
+                </div>
+                <div class="item-links">
+                    <a href="https://github.com/maxwell-fang/gesture-controls" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> Repository</a>
+                </div>
+            </div>
+
+            <div class="item-card project-card" data-category="optimization">
+                <div class="item-title">Direct Current Optimal Power Flow</div>
+                <p class="item-description">
+                    A recreation of the end-to-end process of the Direct Current Approximation of the Optimal Power Flow problem. This project was completed for CO370 - Operations Research Models at the University of Waterloo.
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Linear Programming</span>
+                    <span class="tag">Operations Research</span>
+                    <span class="tag">Gurobi</span>
+                </div>
+                <div class="item-links">
+                    <a href="assets/CO370report.pdf" target="_blank" class="btn-link"><i class="fa-regular fa-file-pdf"></i> Report PDF</a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Maxwell Fang. Hosted on <a href="https://pages.github.com/" style="color: var(--accent-color);">GitHub Pages</a>.
+             This page was largely prepared with the help of Gemini.</p>
+        </footer>
+
+    </div>
+
+    <!-- Theme & Filter Scripts -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
